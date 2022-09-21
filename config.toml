@@ -1,0 +1,30 @@
+baseURL = "https://deepin-community.github.io/"
+languageCode = "en-us"
+title = "XXX 小组博客"
+theme = "geekblog"
+
+[taxonomies]
+  author = "authors"
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
+[mediaTypes]
+  [mediaTypes."application/atom+xml"]
+    suffixes = ["xml"]
+
+[outputFormats]
+  [outputFormats.Atom]
+    # https://validator.w3.org/feed/docs/atom.html#whatIsAtom
+    name = "Atom"
+    mediaType = "application/atom+xml"
+    # generated file = <baseName>.<mediaType."application/atom+xml".suffixes[0]> = atom.xml
+    baseName = "atom"
+    isPlainText = false
+    rel = "alternate"
+    isHTML = false
+    noUgly = true
+    permalinkable = false
+
+[outputs]
+  home = ["HTML", "ATOM"]
