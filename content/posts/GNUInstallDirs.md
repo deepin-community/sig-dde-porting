@@ -3,17 +3,16 @@ title: "在 GNU/Linux 中使用 GNUInstallDirs 优化 cmake 安装路径"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: ["成果公示"]
+tags: ["文档"]
 ---
-
-这是一个模板文章。各个 SIG 在实际使用此博客模板时可根据实际需求对此模板进行任何调整。
-
-<!--more-->
 
 
 使用 GNUInstallDirs.cmake模块
   
-   在指定安装路径时，应当使用变量而非写死安装目录，以便于在不完全符合 FHS 的系统上安装，提高程序的可移植性。对于使用何种变量， GUN 提出了适用于 unix 系统的 [GNU标准安装目录](https://www.gnu.org/prep/standards/html_node/Directory-Variables.html)，GNU/Linux 上使用的就是这套标准的变体。cmake 官方提供了 GNUInstallDirs 模块，定义了一组标准的变量，用于安装不同类型文件到规范指定的目录中。
+在指定安装路径时，应当使用变量而非写死安装目录，以便于在不完全符合 FHS 的系统上安装，提高程序的可移植性。对于使用何种变量， GUN 提出了适用于 unix 系统的 [GNU标准安装目录](https://www.gnu.org/prep/standards/html_node/Directory-Variables.html)，GNU/Linux 上使用的就是这套标准的变体。cmake 官方提供了 GNUInstallDirs 模块，定义了一组标准的变量，用于安装不同类型文件到规范指定的目录中。
+
+<!--more-->
+
 
 要使用这个模块，在 CMakeLists.txt 添加一行 `include(GNUInstallDirs)` 即可导入。如果你发现 *CMAKE_INSTALL_XXXX* 的值为空，大概率是缺少这一行。注意导入模块需要放在使用变量之前。
 
@@ -125,8 +124,8 @@ SYSCONFDIR, LOCALSTATEDIR 和 RUNSTATEDIR 会向后拼接。 比如， SYSCONFDI
 
 
 ### 参考文档
-[GNUInstallDirs 文档](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
-[cmake install 文档](https://cmake.org/cmake/help/latest/command/install.html)
-[GNUInstallDirs 源码](https://github.com/Kitware/CMake/blob/master/Modules/GNUInstallDirs.cmake)
+- [GNUInstallDirs 文档](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
+- [cmake install 文档](https://cmake.org/cmake/help/latest/command/install.html)
+- [GNUInstallDirs 源码](https://github.com/Kitware/CMake/blob/master/Modules/GNUInstallDirs.cmake)
 
 
