@@ -3,7 +3,7 @@ title: "正确导入库文件"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: ["文档"]
+tags: [ "文档" ]
 ---
 
 ## 正确导入库文件
@@ -11,7 +11,6 @@ tags: ["文档"]
 1. 缺少对依赖的检查，
 2. 没有检查依赖的版本
 3. 提供
-
 
 
 ## 使用 pkg-config
@@ -52,6 +51,7 @@ exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include/foo
 ```
+这两种做法都是硬编码路径，
 
 
 ```
@@ -142,12 +142,11 @@ cmake 官方提供了 CMakeFindDependencyMacro 模块，专门用在  Config.cma
 find_dependency 的优点是如果 A  的  
 
 
-
 使用 configure_package_config_file 代替 configure_file
 
 提供了 set
 
-
+ [Installing a Config.cmake file](https://www.f-ax.de/dev/2020/10/07/cmake-config-package.html)
 
 编写自己的 模块
 
