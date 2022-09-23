@@ -5,14 +5,14 @@ draft: false
 authors: [ "rewine" ]
 tags: [ "文档" ]
 ---
-### 生成 Config.cmake 文件
+## 生成 Config.cmake 文件
 
-生成 Config.cmake 文件路径要求与 pkg-cong 一致
+生成 Config.cmake 文件路径要求[与 pkg-config 一致](({{< ref "pkg_config.md" >}}))
 
 #### 应该提供 FooConfig.cmake.in 使用 FULL 版本的 GNUInstallDirs 变量替换路径
 
-相关修改：[use configure_file set path in DdeDockConfig.cmake](https://github.com/linuxdeepin/dde-dock/pull/556/commits/6185843e8ed93c9d22f9921aeefcfa0e73f4f351)
-
+相关修改：
+- [use configure_file set path in DdeDockConfig.cmake](https://github.com/linuxdeepin/dde-dock/pull/556/commits/6185843e8ed93c9d22f9921aeefcfa0e73f4f351)
 
 #### 使用 find_dependency 代替 find_package
 
@@ -86,7 +86,7 @@ find_package 提供的变量请检查 Config.cmake 提供了什么，不像 pkg_
 相关修改：
 - https://github.com/linuxdeepin/deepin-calculator/pull/85
 
-### 编写 FindXXX.cmake 模块
+#### 编写 FindXXX.cmake 模块
 
 对于没有提供 pkg-config 也没有提供 Config.cmake 并且 cmake 官方没有提供对应模块的，建议自行写一个 FindXXX.cmake 模块
 
@@ -101,7 +101,7 @@ find_package 提供的变量请检查 Config.cmake 提供了什么，不像 pkg_
 修改示例：
  - https://github.com/linuxdeepin/image-editor/pull/28
 
-##### dtkcommon 相关
+#### dtkcommon 相关
 
 使用 dconfig_override_files 请不要忘记通过 `find_package(Dtk)
 ` 引入 dtkcommon 提供的模块，而不是靠 DtkWidget 的传播依赖（实际上不应该传播 dtkcommon 的）。
