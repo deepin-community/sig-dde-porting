@@ -123,4 +123,4 @@ gsettings schemas 安装后需要编译一下（一般目录是 /usr/share/glib-
 
 像下面这样在 CMakeList.txt 编译是不需要的：
 `install(CODE "execute_process(COMMAND glib-compile-schemas ${CMAKE_INSTALL_PREFIX}/share/glib-2.0/schemas)")`
-
+[相关修改](https://github.com/linuxdeepin/dde-session-shell/commit/6faf19b4d73cc35f5cd0f20141077139eccc5846)
