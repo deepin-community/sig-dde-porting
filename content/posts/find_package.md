@@ -1,12 +1,10 @@
 ---
-title: "正确导入库文件"
+title: "规范导出和使用 Config.cmake 文件"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
 tags: [ "文档" ]
 ---
-
-## 使用 Config.cmake 文件
 ### 生成 Config.cmake 文件
 
 生成 Config.cmake 文件路径要求与 pkg-cong 一致

@@ -1,5 +1,5 @@
 ---
-title: "提高可移植性的建议"
+title: "提高可移植性的建议[目录]"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
@@ -14,8 +14,8 @@ weight: 1
  
 - [源码中的硬编码路径]({{< ref "hardcode.md" >}})
 
-- [编译参数]({{< ref "compile_flag.md" >}})
+- [规范编译参数]({{< ref "compile_flag.md" >}})
 
-- [pkg-config]({{< ref "pkg_config.md" >}})
+- [规范导出和使用 pkg-config]({{< ref "pkg_config.md" >}})
 
-- [find_package]({{< ref "find_package.md" >}})
+- [规范导出和使用 Config.cmake]({{< ref "find_package.md" >}})

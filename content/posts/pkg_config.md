@@ -1,5 +1,5 @@
 ---
-title: "pkg-config"
+title: "规范导出和使用 pkg-config 文件"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
