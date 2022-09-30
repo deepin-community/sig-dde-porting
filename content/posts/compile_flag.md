@@ -78,6 +78,14 @@ if(result)
 endif()
 ```
 
+## 位置无关
+
+set(POSITION_INDEPENDENT_CODE True)
+
+
+如果建议使用 [check_pie_supported()](https://cmake.org/cmake/help/latest/module/CheckPIESupported.html)，检查一下编译器是否支持。
+
+
 ## -lpthread
 
 POSIX thread  是基于 C/C++ 的标准线程库。在 cmake 3.1 以上的版本提供了 FindThreads 模块， 如果设置 THREADS_PREFER_PTHREAD_FLAG 变量，会优先使用 pthread。
