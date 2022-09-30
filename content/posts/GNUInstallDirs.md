@@ -3,7 +3,7 @@ title: "在 GNU/Linux 中使用 GNUInstallDirs 优化 cmake 安装路径"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 
 ## 使用 GNUInstallDirs.cmake模块

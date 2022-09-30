@@ -3,10 +3,20 @@ title: "规范导出和使用 pkg-config 文件"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 
 ## 使用 pkg-config
+
+pkg-config 是一个在源代码编译时查询已安装的库的使用接口的计算机工具软件。pkg-config原本是设计用于Linux的，但现在在各个版本的BSD、windows、Mac OS X和Solaris上都有着可用的版本。
+
+它输出已安装的库的相关信息，包括：
+
+- C/C++编译器需要的输入参数
+- 链接器需要的输入参数
+- 已安装软件包的版本信息
+
+<!--more-->
 
 #### 使用 cmake 生成 .pc 文件
 

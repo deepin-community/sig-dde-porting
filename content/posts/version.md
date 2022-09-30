@@ -3,11 +3,10 @@ title: "合理利用开发文件的版本信息"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 
 对于供他人调用的库（尤其是活跃开发中，接口经常变化的）来说，版本信息非常重要。版本变化意味这接口变化。应用引入库时也应该检查版本号，方便其他人编译。比如，某个开发库 A 新增了一个头文件，在升级了这个库依赖后引入了这个头文件。外部开发者想要编译这个软件, 最后只能得到 “xxx.h not found” 的编译错误。 如果头文件命名和库名有关还好点，很多时候根本看不出来到达是那里出错了，是自己的环境被破坏了，还是自己安装的某个依赖版本太高了还是太低了，如果是，是具体哪个依赖，正确的版本又是什么。这需要花费很多时间才能解决。如果加上版本检查，在编译开始之前就可以发现问题。
-
 
 <!--more-->
 
@@ -81,7 +80,7 @@ message("${GLIB2_VERSION}")  # 这里会输出找到的 glib-2.0 版本值，如
 ## Config.cmake 相关设置
 ### [库] 提供版本文件 
 
-如果项目提供了 PkgNameConfig.cmake 用于 cmake find_package 导入，应该同时提供版本信息（文件命名为 PkgNameConfigVersion.cmake）供调用者检查。
+如果项目提供了 PkgNameConfig.cmake 用于 cmake 的 find_package 导入，应该同时提供版本信息（文件命名为 PkgNameConfigVersion.cmake）供调用者检查。
 
 cmake 有一个专门用来生成 Config.cmake 的模块，可以通过  `include(CMakePackageConfigHelpers)` 引入。该模块提供了 write_basic_package_version_file 函数，可以直接生成 ConfigVersion.cmake 文件。使用示例如下：
 
@@ -93,10 +92,9 @@ write_basic_package_version_file(
 )
 ```
 
-- 文件名，必须以 PkgNameConfigVersion.cmake 格式命名，find_package 可以自动识别。
+- 文件名，必须以 PkgNameConfigVersion.cmake 格式命名，find_package 才可以自动识别。
 - VERSION 传入当前项目的版本号，缺省值是 PROJECT_VERSION。
 - COMPATIBILITY 版本检查策略，有  AnyNewerVersion，SameMajorVersion，SameMinorVersion，ExactVersion 四种。AnyNewerVersion 版本检查最为宽松，只需要提供的版本比需求的版本要相同或者更新，如需要 1.2 版本，找到了 1.2，1.5，1.99 或者 2.0 都是合法的，而找到 1.1 版本将视为没有找到这个包。而 SameMajorVersion 还要求主版本号也必须相同，前面的例子中，要求 1.2 找到 2.0 版本会被视为寻找失败 。类似的 SameMinorVersion 要求前 2 位版本号必须一致。ExactVersion 要求版本号完全一致，不考虑向后兼容的软件需要用这个。一般来说，DDE 大部分项目应该使用 SameMinorVersion。
-
 
 生成的  PkgNameConfigVersion.cmake 文件应该安装到和 PkgNameConfig.cmake 同一个目录中，一般这个目录是 `${CMAKE_INSTALL_LIBDIR}/cmake/PkgName`
 

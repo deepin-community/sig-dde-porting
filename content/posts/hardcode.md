@@ -3,7 +3,7 @@ title: "尽可能避免使用 hardcode 路径"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 
 ## Shebangs 

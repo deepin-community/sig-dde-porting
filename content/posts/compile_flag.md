@@ -3,7 +3,7 @@ title: "规范设置编译参数"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 
 CMake 中有许多关于编译器和链接器的设置。当你需要添加一些特殊的需求，你应该首先检查 CMake 是否支持这个需求，如果支持的话，你就可以不用关心编译器的版本，一切交给 CMake 来做即可。 更棒的是，你可以在 `CMakeLists.txt` 表明你的意图，而不是通过开启一系列标志 (flag) 。
@@ -30,7 +30,7 @@ CMAKE_BUILD_TYPE 的默认值不是Release，也不属于上面4种，而是空�
 - https://github.com/ros-infrastructure/bloom/issues/327
 
 #### Release 模式加 O3, Debug 模式加 -g 等等
-不用加，这些都是无用功。 
+不用加，这些都是无用功
 
 #### Release 模式加 -g
 如果软件发行版本需要 debug 符号，请用 RelWithDebInfo 模式
@@ -42,6 +42,9 @@ CMAKE_BUILD_TYPE 的默认值不是Release，也不属于上面4种，而是空�
 -O0/-O1/-O2/-O3/-Ofast 开启的优化参数前依次递增，是完全的子集关系，不是多多益善的。
 
 -Os 是在 -O2 的基础上，尽可能优化程序大小。
+
+#### Release 模式使用 -Ofast
+最好是 `string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})`，这样就没有`-O3`了， 
 
 参考资料： 
 - https://stackoverflow.com/questions/48754619/what-are-cmake-build-type-debug-release-relwithdebinfo-and-minsizerel

@@ -3,7 +3,7 @@ title: "规范导出和使用 Config.cmake 文件"
 date: 2022-09-16T14:00:00+08:00
 draft: false
 authors: [ "rewine" ]
-tags: [ "文档" ]
+tags: [ "改善可移植性" ]
 ---
 ## 生成 Config.cmake 文件
 
