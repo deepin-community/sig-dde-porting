@@ -57,6 +57,22 @@ CMAKE_BUILD_TYPE 的默认值不是Release，也不属于上面4种，而是空�
 部分项目设置了 CMAKE_CXX_STANDARD 为 14/17, 又加了参数 -std=c++11，这是冲突的，请检查。
 比如： https://github.com/linuxdeepin/deepin-movie-reborn/blob/0a08e29e78c4f35f787b999d857f696f804f8641/CMakeLists.txt#L18
 
+## Hardening
+
+DEB_BUILD_HARDENING_FORMAT (gcc/g++ -Wformat -Wformat-security -Werror=format-security)
+DEB_BUILD_HARDENING_FORTIFY (gcc/g++ -D_FORTIFY_SOURCE=2)
+DEB_BUILD_HARDENING_STACKPROTECTOR (gcc/g++ -fstack-protector-strong)
+DEB_BUILD_HARDENING_PIE (gcc/g++ -fPIE -pie)
+DEB_BUILD_HARDENING_RELRO (ld -z relro)
+DEB_BUILD_HARDENING_BINDNOW (ld -z now)
+
+- https://wiki.debian.org/Hardening#Using_Hardening_Options
+- https://nixos.org/manual/nixpkgs/stable/#sec-hardening-in-nixpkgs
+- https://wiki.archlinux.org/title/Security
+- https://wiki.ubuntu.com/Security/Features
+- https://wiki.gentoo.org/wiki/Project:Hardened
+
+
 ## as-need 参数
 
 已知 as-need 参数 break 了 mold 连接器，可用 as-needed 代替。
@@ -78,12 +94,23 @@ if(result)
 endif()
 ```
 
-## 位置无关
+## 位置无关的代码
 
-set(POSITION_INDEPENDENT_CODE True)
+在 g++ 中，对编译生成动态库是 -fPIC/-fpic，对生成可执行文件是 -fPIE/-fpie。
 
+如果要把静态库链接到动态库，这一选项是必须的。其他情况也建议开启，可以防范一些内存攻击。
 
-如果建议使用 [check_pie_supported()](https://cmake.org/cmake/help/latest/module/CheckPIESupported.html)，检查一下编译器是否支持。
+在 cmake 中，对于动态库（SHARED and MODULE library），这一选项是默认开启的。对于静态库，在 cmake 3.14 版本之后（CMP0083 新标准），默认值是 POSITION_INDEPENDENT_CODE，而该值默认为假。
+
+可以通过 `set(POSITION_INDEPENDENT_CODE True)` 让静态库默认增加 “-fpic” 编译。
+
+最好通过 set_property 设置此选项：`set_property(TARGET foo PROPERTY POSITION_INDEPENDENT_CODE TRUE)`，foo 为对应静态库或者可执行程序。
+
+此外，推荐使用 [check_pie_supported()](https://cmake.org/cmake/help/latest/module/CheckPIESupported.html)，检查一下编译器是否支持。
+
+参考资料：
+- https://cmake.org/cmake/help/latest/prop_tgt/POSITION_INDEPENDENT_CODE.html
+- https://cmake.org/cmake/help/latest/policy/CMP0083.html
 
 
 ## -lpthread
@@ -131,3 +158,4 @@ gsettings schemas 安装后需要编译一下（一般目录是 /usr/share/glib-
 像下面这样在 CMakeList.txt 编译是不需要的：
 `install(CODE "execute_process(COMMAND glib-compile-schemas ${CMAKE_INSTALL_PREFIX}/share/glib-2.0/schemas)")`
 [相关修改](https://github.com/linuxdeepin/dde-session-shell/commit/6faf19b4d73cc35f5cd0f20141077139eccc5846)
+
