@@ -7,7 +7,7 @@ tags: [ "改善可移植性" ]
 ---
 
 ## 使用 GNUInstallDirs.cmake模块
-  
+
 在指定安装路径时，应当使用变量而非写死安装目录，以便于在不完全符合 FHS 的系统上安装，提高程序的可移植性。对于使用何种变量， GUN 提出了适用于 unix 系统的 [GNU标准安装目录](https://www.gnu.org/prep/standards/html_node/Directory-Variables.html)，GNU/Linux 上使用的就是这套标准的变体。cmake 官方提供了 GNUInstallDirs 模块，定义了一组标准的变量，用于安装不同类型文件到规范指定的目录中。
 
 <!--more-->
@@ -58,7 +58,7 @@ endif ()
 可执行库文件（ `libexec` ）
 
 - CMAKE_INSTALL_SYSCONFDIR
-单机只读数据/ead-only single-machine data（ `etc` ）
+单机只读数据/read-only single-machine data（ `etc` ）
 
 - CMAKE_INSTALL_SHAREDSTATEDIR
 架构无关的可修改数据/modifiable architecture-independent data （ `com` ）

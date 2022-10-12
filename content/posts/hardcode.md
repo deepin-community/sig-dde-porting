@@ -6,27 +6,6 @@ authors: [ "rewine" ]
 tags: [ "改善可移植性" ]
 ---
 
-## Shebangs 
-
-```txt
-#!/bin/bash -> #!/usr/bin/env bash
-#!/usr/bin/python -> #!/usr/bin/env python
-```
-
-并非所有系统都有 /bin 目录和 /usr/bin 目录，比如 NixOS 和 GNU Guix 操作系统。
-env 可以根据环境变量 **`$PATH`** 寻找可执行程序（如 bash），比硬编码路径更加灵活，可以提高可移植性。
-
-不过并非所有脚本都适合使用 env, 有 2 种情况：
-- 对安全性要求高的脚本（如以 root 权限运行），硬编码可以避免通过相关 PATH 让 bash 指向恶意程序。
-- 带有参数的 Shebangs 头，如 #!/usr/bin/perl -w 不能改成 #!/usr/bin/env perl -w
-
-对除此之外的大部分的 Shebangs 脚本来说，使用 env 是更好的方案。
-
-参考资料：
-- [#!/bin/bash 和 #!/usr/bin/env bash 的区别](https://blog.csdn.net/qq_37164975/article/details/106181500)
-- [why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name](https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my)
-
-
 ## 可执行程序
 
 #### 判断某个可执行程序是否存在
@@ -99,5 +78,25 @@ qt 应用可以使用 QLibraryInfo::location(QLibraryInfo::LibrariesPath)
 
 部分应用导入翻译使用了 `/usr/share` [示例](https://github.com/linuxdeepin/dde-control-center/blob/ed696dabf41bee19f28758d2589dac20b866c356/src/reset-password-dialog/main.cpp#L63), 应该改为使用 `QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)`, 此外使用了 dtk 的应用是直接用 [DApplication 的 loadTranslator](https://github.com/linuxdeepin/dtkwidget/blob/f80f48076e1821b06461e1fc330f50ceaff2c812/src/widgets/dapplication.cpp#L776) 导入翻译。
 
-相关 issues：
+## Shebangs 
+
+```txt
+#!/bin/bash -> #!/usr/bin/env bash
+#!/usr/bin/python -> #!/usr/bin/env python
+```
+
+并非所有系统都有 /bin 目录和 /usr/bin 目录，比如 NixOS 和 GNU Guix 操作系统。
+env 可以根据环境变量 **`$PATH`** 寻找可执行程序（如 bash），比硬编码路径更加灵活，可以提高可移植性。
+
+不过并非所有脚本都适合使用 env, 有 2 种情况：
+- 对安全性要求高的脚本（如以 root 权限运行），硬编码可以避免通过相关 PATH 让 bash 指向恶意程序。
+- 带有参数的 Shebangs 头，如 #!/usr/bin/perl -w 不能改成 #!/usr/bin/env perl -w
+
+对除此之外的大部分的 Shebangs 脚本来说，使用 env 是更好的方案。
+
+参考资料：
+- [#!/bin/bash 和 #!/usr/bin/env bash 的区别](https://blog.csdn.net/qq_37164975/article/details/106181500)
+- [why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name](https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my)
+
+### 相关 issues：
 - https://github.com/linuxdeepin/developer-center/issues/3374

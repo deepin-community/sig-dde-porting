@@ -40,16 +40,19 @@ CMAKE_BUILD_TYPE 的默认值不是Release，也不属于上面4种，而是空�
 
 #### 同时有 -O1 -O3
 -O0/-O1/-O2/-O3/-Ofast 开启的优化参数前依次递增，是完全的子集关系，不是多多益善的。
-
 -Os 是在 -O2 的基础上，尽可能优化程序大小。
 
-#### Release 模式使用 -Ofast
-最好是 `string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})`，这样就没有`-O3`了， 
+#### Release 模式使用 -Ofast 或其他优化级别。
+最好是 `string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})`，这样就没有原来的`-O3`了
+如果是是降低优化基本，则必须这样替换。
 
 参考资料： 
 - https://stackoverflow.com/questions/48754619/what-are-cmake-build-type-debug-release-relwithdebinfo-and-minsizerel
 
+#### de
 
+参考修改：
+- https://github.com/linuxdeepin/dtkcore/pull/114
 ## c++标准版本 (比如 -std=c++11)
 
 直接使用 set(CMAKE_CXX_STANDARD 11)
