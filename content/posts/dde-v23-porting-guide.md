@@ -2,7 +2,7 @@
 title: "DDE v23 正式版移植简要指南"
 date: 2023-08-14
 draft: false
-authors: [ "BLumia" "rewine" ]
+authors: [ "BLumia", "rewine" ]
 tags: [ "成果展示" ]
 ---
 
