@@ -12,6 +12,9 @@ Qt 6.8 发布已经有一段时间了，各个发行版尝试移植 DDE 时发�
 
 *注：笔者所测试的环境为 Arch Linux，下述为 2024/10/25 testing 仓库状态下的测试结论。若未另行说明，则下述涉及到的项目名称仍然使用了与 DDE 对应项目原始仓库的名称，而非各个发行版下的包名。*
 
+> [!NOTE]
+> 2024/11/06更新：对于 dde-launchpad、dde-tray-loader、dde-shell 目前均有新的维护分支版本，部分版本中已包含了下述中涉及到的一些 patch 的修复。本博客目前只更新了实机验证可用的新 tag 版本，但你也可以尝试未验证但位于维护分支的新 tag。
+
 ## 分支与 tag 说明
 
 因维护需要，对于部分 DDE 组件（dde-shell、dde-launchpad、dde-tray-loader），我们对 deepin 23 所使用的分支创建了名为 `release/beige` 的维护分支。也会在维护分支上打对应的维护更新用的 tag。
@@ -34,38 +37,45 @@ tag 版本。
 
 https://github.com/linuxdeepin/dde-shell/commit/46871c83cf8ecfcf83bf2fb49e1f09af997eca96
 
-
 ### 版本建议
 
 - 若目标发行版原本在使用 `1.0.0` 版本，则建议至少更新到 `1.0.2`
-- `1.0.3` 以上版本依赖 `treeland-protocols` 项目，进行打包即可，建议对齐打包后更新 dde-shell 至 `1.0.4`
-  - 由于 `treeland-protocols` 更新了其 CMake 支持中目标名称的大小写，故你需要打 这个小 patch。
+- `1.0.3` 以上版本依赖 `treeland-protocols` 项目，进行打包即可，建议对齐打包后至少更新 dde-shell 至 `1.0.4`
+  - 由于 `treeland-protocols` 更新了其 CMake 支持中目标名称的大小写，故你需要打这个小 patch （或者手动进行相应调整）：
   https://github.com/linuxdeepin/dde-shell/commit/b3f342c094354e4ba87ac1da4cf1a380556b2a3b
 - `dde-shell` 主干分支存在 `1.99.1`，但包括此版本在内的主干分支已不再在任务栏提供启动器图标，故需要配合启动器主干分支使用（启动器暂无 `1.99.z` 版本）
 
-tl;dr：建议打包 `treeland-protocols` 后更新至 `1.0.4`。
+tl;dr：建议打包 `treeland-protocols` 后更新至至少 `1.0.4`。
+
+## treeland-protocols
+
+被 dde-shell `1.0.3` 以上版本所依赖。
+
+### 版本建议
+
+建议打包/更新至 `0.4.1`。
 
 ## dde-tray-loader
 
 ### Patch 说明
 
-任务栏托盘区域的弹出面板（例如点击时间组件后的面板）可能有位置不正确的问题，需要应用这个 patch： <https://github.com/linuxdeepin/dde-tray-loader/commit/664b093b6a913764fedbac9110927f26978aa8c9>
+任务栏托盘区域的弹出面板（例如点击时间组件后的面板）早期版本有位置不正确的问题，需要应用这个 patch： <https://github.com/linuxdeepin/dde-tray-loader/commit/664b093b6a913764fedbac9110927f26978aa8c9> 。最新版本（`1.0.5` 起）中已经修正相关问题。
 
 ### 版本建议
 
-建议更新至 `1.0.4`。
+建议更新至 `1.0.5`。
 
 ## dde-launchpad
 
 ### Patch 说明
 
-启动器的维护分支版本应该可以在无任何修改的情况下正常工作。尽管启动器小窗口模式的面板位置可能不对，但位置问题暂不计划在维护分支解决。
+启动器的维护分支版本应该可以在无任何修改的情况下正常工作，尽管启动器小窗口模式的面板位置可能不对，但位置问题暂不计划在维护分支解决。
 
 启动器主干分支不存在上述问题，但主干分支暂无 `1.99.z` tag。
 
 ### 版本建议
 
-建议更新至 `1.0.5`。
+在之前的移植过程中发现小窗口搜索结果界面可能存在显示错位问题，此问题已在 `1.0.6` 修复，故建议更新至 `1.0.6`。
 
 ## dde-application-manager
 
