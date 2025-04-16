@@ -82,6 +82,15 @@ deepin-kwin wayland 功能已经废弃，未来将由 treeland 替代。目前 d
 
 （注：相关请参见[此邮件列表存档](https://www.freelists.org/post/deepin-devel/githubddesessionshellddesessionshell)）
 
+## Qt 6.9 编译问题
+- dtk：23 版本 dtk 没有适配 qt 6.9,可尝试使用最新 tag,或者参考 Arch linux 打包提供的 patch
+- dde-shell：需要 https://github.com/linuxdeepin/dde-shell/pull/1091 
+
+如果遇到 qmlsc 崩溃问题，见 [QTBUG-135885](https://bugreports.qt.io/browse/QTBUG-135885) 和 [QTBUG-135885](https://bugreports.qt.io/browse/QTBUG-135288)，需要为 qtdeclarative 增加以下 patch：
+
+- https://github.com/qt/qtdeclarative/commit/d1aa2e8466bab73c3e4d120356238b482b55f02a.patch
+
+
 ## 技术预览组件
 
 原本涉及的技术预览组件在 23 至 23.1 的这个阶段均无较大进展，故不再于此罗列。
