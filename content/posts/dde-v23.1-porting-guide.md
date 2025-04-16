@@ -74,9 +74,13 @@ deepin-kwin wayland 功能已经废弃，未来将由 treeland 替代。目前 d
 
 ### dde-application-manager
 
-负责启动和管理 DDE 桌面环境存在的应用程序列表的组件。
-
 此组件现已使用主干分支最新版本（当前为 `1.2.27`）。请注意，较早的主干版本（例如 `1.2.26`）在 deepin 23 环境存在一些已知行为问题，故移植最新的 deepin 23 DDE 时，请至少使用 `1.2.27` 版本。
+
+### dde-session-shell
+
+尽管此组件不存在架构性质层面的较大调整，但涉及到打包移植相关的注意事项。此组件由于主干分支的研发需求，对仓库进行过迁移到。当前 GitHub 上的 linuxdeepin/dde-session-shell 仓库历史已与之前不同。故如果你需要适用于 deepin 23 的此仓库的完整历史，请转到 [dde-session-shell-snipe](https://github.com/linuxdeepin/dde-session-shell-snipe)。所有原始仓库的提交历史以及 tag 均可在这个仓库中找到（实质是仓库重命名后新建了与原名的同名仓库）。
+
+（注：相关请参见[此邮件列表存档](https://www.freelists.org/post/deepin-devel/githubddesessionshellddesessionshell)）
 
 ## 技术预览组件
 
