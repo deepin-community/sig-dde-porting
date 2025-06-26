@@ -120,8 +120,9 @@ ddm | 0.1.10
 
 deepin-kwin 对 Qt 的版本依赖切换到了 Qt 6，不过值得注意的是，当前的 deepin-kwin 并非从上游 kwin 6.x 中 fork 出来的，而是基于 uos 20 版本的 kwin 5.27.x 进行的 qt6/kf6 迁移，并且由于一些原因，其二进制可执行的文件名恢复到了 kwin，这会导致与上游原版 kwin 的冲突。
 
-就于此事项的详细介绍，请参见 https://github.com/orgs/linuxdeepin/discussions/11471 讨论。对于移植人员，我们建议考虑下面两种方案：
+就于此事项的详细介绍，请参见 https://github.com/orgs/linuxdeepin/discussions/11471 讨论。对于移植人员，我们建议考虑下面三种方案：
 
+- 使用 Qt 6 的 deepin-kwin，放弃与上游 kwin 的共存支持。
 - 继续使用 deepin-kwin 5.27，尽管存在一些问题，但此版本仍然可保证和上游版本 kwin 共存。
 - 考虑打包 Treeland 环境。
 
@@ -151,11 +152,11 @@ DDE 尚未完整针对 Qt 6.9 进行测试，但存在一些已知问题，下�
 
 1. QML 的 DelegateChoice/DelegateChooser 组件不存在问题
 
-Qt 6.9 中，此组件被从 labs “转正”到了 QtQml.Models 下，相应的 import 需要修正。已知 dde-shell 存在此问题。
+Qt 6.9 中，此组件被从 labs “转正”到了 `QtQml.Models` 下，相应的 import 需要修正。已知 dde-shell 存在此问题（[修正相关问题的 patch](https://github.com/linuxdeepin/dde-shell/pull/1173)）。
 
-对于此问题的修正，可参考 dde-control-center 的相关提交：
+若有其他项目存在相同问题，则对于此问题的修正，可参考 dde-shell 的相关提交：
 
-- https://github.com/linuxdeepin/dde-control-center/pull/2304
+- https://github.com/linuxdeepin/dde-shell/pull/1173
 
 ## 获取移植帮助
 
