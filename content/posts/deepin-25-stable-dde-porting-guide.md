@@ -20,6 +20,8 @@ tags: [ "成果展示" ]
 
 需要注意的是，由于此文章编写时间早于版本发布时间，故最终版本镜像中使用的版本可能高于下面列出的版本。我们尽可能确保此文章的准确性，但若您需要获取 ISO 镜像中使用的确切软件版本列表，请挂载 ISO 后参阅 `LIVE/FILESYS{T,0,1}.MAN`/`live/filesystem.manifest` 路径对应的文件的内容。
 
+另外，由于前述 manifest 文件包含了 ISO 所附带的所有软件包的版本信息，而 DDE 移植并不需要关注整个列表，你可以参考 [deepin-community/deepin-desktop-environment](https://github.com/deepin-community/deepin-desktop-environment/) 提供的几个 Meta 包中描述的依赖关系，来了解哪些软件包和 DDE 有关。
+
 ## 主要组件
 
 ### DTK 与 DTK6
@@ -162,7 +164,11 @@ Qt 6.9 中，此组件被从 labs “转正”到了 `QtQml.Models` 下，相应
 
 ### deepin-anything
 
-尽管被部分 DDE 组件依赖，但均为可选。anything 提供了内核模块，对于滚动发行版移植可能不友好，移植并不能得到很高的体验改善。
+尽管被部分 DDE 组件依赖，但均为可选。anything 提供了内核模块，对于滚动发行版移植可能不友好，可能移植并不能得到很高的体验改善。
+
+若忽略 deepin-anything 移植，则下列组件也应当被忽略（因为依赖了 deepin-anything）：
+
+- dde-grand-search
 
 ### dde-application-wizard
 
