@@ -74,6 +74,7 @@ dde-tray-loader | dde-tray-loader | 2.0.17
 dde-application-wizard | dde-application-wizard-daemon-compat | 0.1.21
 dde-clipboard | dde-clipboard | 6.1.16
 deepin-service-manager | deepin-service-manager | 1.0.17
+dde-services  | dde-services  | 1.0.12
 treeland-protocols | treeland-protocols | 0.5.1
 dde-network-core | libdde-network-core | 2.0.74
 dde-control-center | dde-control-center | 6.1.58
