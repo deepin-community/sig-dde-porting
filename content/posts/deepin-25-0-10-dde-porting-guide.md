@@ -75,9 +75,12 @@ dde-application-wizard | dde-application-wizard-daemon-compat | 0.1.21
 dde-clipboard | dde-clipboard | 6.1.16
 deepin-service-manager | deepin-service-manager | 1.0.17
 dde-services  | dde-services  | 1.0.12
+dde-appearance | dde-appearance | 1.1.71
+dde-api        | dde-api        | 6.0.29
 treeland-protocols | treeland-protocols | 0.5.1
 dde-network-core | libdde-network-core | 2.0.74
 dde-control-center | dde-control-center | 6.1.58
+dde-file-manager | dde-desktop |	6.5.106
 dde-launcher   | 被 dde-launchpad 取代，不再使用
 dde-dock       | 被 dde-shell 取代，不再使用
 startdde       | 已被废弃，不再使用
