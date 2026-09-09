@@ -49,6 +49,8 @@ qt6platform-plugins | 6.0.37
 
 关于 qt5platform-plugins，现有的 dwayland 插件可能对非 DDE 环境（例如 KDE）的 wayland 用户存在影响，可参照 [linuxdeepin/developer-center#7217](https://github.com/linuxdeepin/developer-center/issues/7217) 打对应的 patch 规避影响。
 
+另外，关于 dtkgui 的 freeimage 依赖，我们建议设置 `DTK_DISABLE_EX_IMAGE_FORMAT` 构建选项来主动禁用相关支持（若构建时无法找到对应依赖也会自动禁用）。后续我们可能会将 freeimage 更换为其他依赖。
+
 ### DDE 主要组件
 
 下面仅涉及变化较大或影响较广的组件。其余未涉及的组件可正常参照最新 tag 进行打包与移植。
